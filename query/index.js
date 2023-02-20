@@ -13,6 +13,7 @@ app.get('/posts', (req, res) => {
 
 app.post('/events', (req, res) => {
   const { type, data } = req.body
+  console.log('Received Event:', type)
 
   if (type === 'PostCreated') {
     const { id, title } = data
@@ -20,8 +21,20 @@ app.post('/events', (req, res) => {
   }
 
   if (type === 'CommentCreated') {
-    const { postId, id, content } = data
-    posts[postId].comments.push({ id, content })
+    const { postId } = data
+    posts[postId].comments.push({ ...data })
+  }
+
+  if (type === 'CommentUpdated') {
+    const { postId, id } = data
+    const comments = posts[postId].comments.map((comment) => {
+      if (comment.id === id) {
+        comment = data
+      }
+      return comment
+    })
+
+    posts[postId].comments = comments
   }
 
   console.log(posts)
