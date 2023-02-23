@@ -11,29 +11,10 @@ app.post('/events', (req, res) => {
 
   events.push(event)
 
-  try {
-    axios.post('http://localhost:4000/events', event) // POSTS
-  } catch (error) {
-    console.log('Unable to connect to Post Service')
-  }
-
-  try {
-    axios.post('http://localhost:4001/events', event) // COMMENTS
-  } catch (error) {
-    console.log('Unable to connect to Comments Service')
-  }
-
-  try {
-    axios.post('http://localhost:4002/events', event) // QUERY
-  } catch (error) {
-    console.log('Unable to connect to Query Service')
-  }
-
-  try {
-    axios.post('http://localhost:4003/events', event) // MODERATION
-  } catch (error) {
-    console.log('Unable to connect to Moderation Service')
-  }
+  axios.post('http://posts-clusterip-srv:4000/events', event) // POSTS
+  // axios.post('http://localhost:4001/events', event) // COMMENTS
+  // axios.post('http://localhost:4002/events', event) // QUERY
+  // axios.post('http://localhost:4003/events', event) // MODERATION
 
   res.send({
     status: 'OK'
