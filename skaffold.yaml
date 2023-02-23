@@ -32,27 +32,27 @@ build:
         manual:
           - src: '*.js'
             dest: .
-      - image: anthgrim/moderation
-        context: moderation
-        docker:
-          dockerfile: Dockerfile
-        sync:
-          manual:
-            - src: '*.js'
-              dest: .
-      - image: anthgrim/posts
-        context: posts
-        docker:
-          dockerfile: Dockerfile
-        sync:
-          manual:
-            - src: '*.js'
-              dest: .
-        - image: anthgrim/query
-          context: query
-          docker:
-            dockerfile: Dockerfile
-          sync:
-            manual:
-              - src: '*.js'
-                dest: .
+    - image: anthgrim/moderation
+      context: moderation
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: anthgrim/posts
+      context: posts
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: anthgrim/query
+      context: query
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
